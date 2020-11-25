@@ -1,0 +1,16 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/rawat1101/configs
+          cloneOnStart: true
+          #search-paths: ["*"]
+          #uri: https://Mahendra1101@bitbucket.org/times_internet/song_logging_java_apis.git
+          #search-paths: ["/src/main/resources"]
+          #username: 
+          #password: 
+          
+          
