@@ -2,9 +2,23 @@
 2:spring.security.user.name|password{can be set from jar command eg:--spring.security.user.name=user}
 
 curl -X GET http://localhost:8888/cloud-config/dev --user user:password
-
+curl -X GET http://localhost:8881/application/staging/master/logback-spring.xml --user user:password
 curl -X POST http://localhost:8888/encrypt -d password --user user:password
 
 curl -X POST http://localhost:8888/decrypt -d ec4c2a43bf9d6ea10573e018c155249f43e096730efa0e7145e23ea9838d61c3 --user user:password
 
 java -jar config-server.jar --spring.security.user.name=user --spring.security.user.password={cipher}7beb5a21b01d70f55938c3bec737be263712ae47f37a1922eab48f7536590178 --encrypt.key=1234
+
+================================================================================================================================
+--spring.security.user.name=user --spring.security.user.password={cipher}7beb5a21b01d70f55938c3bec737be263712ae47f37a1922eab48f7536590178 --encrypt.key=1234
+
+
+--spring.cloud.config.username=user --spring.cloud.config.password=password --management.server.port=8081
+ --management.endpoints.web.base-path=/gaana --management.endpoints.web.exposure.include=health,refresh
+
+
+java -jar config-client.jar --spring.cloud.config.username=user --spring.cloud.config.password=password --management.server.port=8081 --management.endpoints.web.base-path=/gaana --management.endpoints.web.exposure.include=health,refresh
+
+
+curl -X GET http://localhost:8881/application/staging/master/logback-spring.xml --user user:password
+http://user:password@localhost:8881/application/staging/master/logback-spring.xml
